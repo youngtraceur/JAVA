@@ -1,0 +1,133 @@
+
+public class Pizza {
+    // atributos
+    private String nombre;
+    private String tamano;
+    private String masa;
+    private int precio;
+    // constructor
+    public Pizza()
+    {
+        nombre = "";
+        tamano = "personal";
+        masa = "";
+        precio = 0;
+    }
+    public Pizza(String nombre, String tamano, String masa, int precio)
+    {
+        this.nombre = nombre;
+        this.tamano = tamano;
+        this.masa = masa;
+        this.precio = precio;
+    }
+    
+    // getter and setter / accesador y mutador
+    public String getNombre()
+    {
+        return nombre;
+    }
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
+    }
+    public String getTamano()
+    {
+        return tamano;
+    }
+    public void settamano(String tamano)
+    {
+        this.tamano = tamano;
+    }
+    public String getmasa()
+    {
+        return masa;
+    }
+    public void setMasa(String masa)
+    {
+        this.masa = masa;
+    }
+    public int getPrecio()
+    {
+        return precio;
+    }
+    public void setPrecio(int precio) //precios como int
+    {
+        this.precio = precio;
+    }
+    // métodos customer
+    public void preparar()
+    {
+        System.out.println("La pizza se esta preparando");
+    }
+    public void calentar()
+    {
+    System.out.println("La pizza se esta calentando");
+    }
+    public String datos() //agregar clases
+    {
+        return "\nnombre : " +  this.nombre+
+                "\ntamaño : " + this.tamano+
+                "\nMasa   : " + this.masa+
+                "\nPrecio : " + this.precio;
+    }
+
+
+
+
+
+
+    // comentario simple
+/*
+ comentario de más de una línea
+*/
+public class Principal {
+    // método main ( entry point)
+    public static void main(String args[])
+    {  // ppt 1.2.1
+        System.out.println("Hola Mundo!!!");
+        // crear objeto
+        Pizza pizza1 = new Pizza();
+        Pizza pizza2 = new Pizza("Española", "Mediana", "Delgada", 8000);
+       pizza1.calentar();
+       
+       
+       //mostrar tamaño pizza
+       
+        System.out.println("tamaño pizza 1: " +pizza1.getTamano());
+        System.out.println("tamaño pizza 2: " +pizza2.getTamano());
+        
+        
+        pizza1.settamano("familiar");
+        System.out.println("tamaño pizza 1: " +pizza1.getTamano());
+        
+        System.out.println("\n******** pizza 2 *******");
+        System.out.println("Nombre  :" + pizza2.getNombre());
+        System.out.println("Tamaño  :" + pizza2.getTamano());
+        System.out.println("Masa    :" + pizza2.getmasa());
+        System.out.println("Precio  :" + pizza2.getPrecio());
+        
+        //pizza 1
+        
+        pizza1.setNombre("napopollo");
+        pizza1.settamano("Grandota");
+        pizza1.setMasa("GRUESA");
+        pizza1.setPrecio(15000);
+        
+        System.out.println("\n******** pizza 1 *******");
+        System.out.println("Nombre  :" + pizza1.getNombre());
+        System.out.println("Tamaño  :" + pizza1.getTamano());
+        System.out.println("Masa    :" + pizza1.getmasa());
+        System.out.println("Precio  :" + pizza1.getPrecio());
+        
+        
+        System.out.println("\n\n******** pizza 1 *******");
+        System.out.println(pizza1.datos());
+        
+        System.out.println("\n\n******** pizza 2 *******");
+        System.out.println(pizza2.datos());
+        
+        
+      
+    }
+    
+}
