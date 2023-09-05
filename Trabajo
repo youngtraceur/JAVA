@@ -1,0 +1,86 @@
+import java.util.Random;
+
+class Trabajador {
+    private int digitoVerificador;
+    private String nombre;
+    
+    public Trabajador(int digitoVerificador, String nombre) {
+        this.digitoVerificador = digitoVerificador;
+        this.nombre = nombre;
+    }
+    
+    public int getDigitoVerificador() {
+        return digitoVerificador;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+    
+    public boolean validarClave(int clave) {
+        // Validar si los primeros 4 dígitos de la clave coinciden con el dígito verificador.
+        String claveStr = String.valueOf(clave);
+        String digitoVerificadorStr = String.valueOf(digitoVerificador);
+        
+        return claveStr.length() >= 4 && claveStr.substring(0, 4).equals(digitoVerificadorStr);
+    }
+}
+
+class Tarjeta {
+    private String codigo;
+    private int clave;
+    private double monto;
+    private String vigencia;
+    private Trabajador trabajador;
+    
+    public Tarjeta(Trabajador trabajador) {
+        this.trabajador = trabajador;
+        this.codigo = generarCodigoCorrelativo();
+        this.clave = trabajador.getDigitoVerificador(); // Tomar los primeros 4 dígitos del Trabajador como clave
+        this.monto = 0; // Inicializar el monto en 0
+        this.vigencia = "2023-12-31"; // Fecha de vigencia por defecto
+    }
+    
+    private String generarCodigoCorrelativo() {
+        // Generar un código correlativo de 16 dígitos aleatorio
+        Random random = new Random();
+        StringBuilder codigo = new StringBuilder();
+        for (int i = 0; i < 16; i++) {
+            codigo.append(random.nextInt(10));
+        }
+        return codigo.toString();
+    }
+    
+    public boolean validarMonto(double compra) {
+        // Validar si el monto cubre la compra deseada
+        return monto >= compra;
+    }
+    
+    public void descontarMonto(double compra) {
+        // Descontar el valor de la compra del monto de la tarjeta
+        if (validarMonto(compra)) {
+            monto -= compra;
+        }
+    }
+    
+    public boolean validarVigencia() {
+        // Validar si la tarjeta está vigente (comparar con la fecha actual)
+        // Aquí debes implementar la lógica para comparar con la fecha actual.
+        // Puedes usar la clase java.time.LocalDate para trabajar con fechas.
+        // Te recomiendo investigar cómo obtener la fecha actual y compararla con la fecha de vigencia.
+        // Ejemplo: LocalDate.now().isBefore(LocalDate.parse(vigencia))
+        return true; // Implementa la lógica adecuada aquí
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Trabajador trabajador = new Trabajador(1234, "Juan Perez");
+        Tarjeta tarjeta = new Tarjeta(trabajador);
+        
+        System.out.println("Clave válida: " + tarjeta.validarClave(1234)); // Debería ser verdadero
+        System.out.println("Monto suficiente: " + tarjeta.validarMonto(50)); // Debería ser falso
+        tarjeta.descontarMonto(20); // Intentar descontar 20 del saldo (debería fallar)
+        System.out.println("Vigente: " + tarjeta.validarVigencia()); // Debería ser verdadero (depende de la lógica de fecha actual)
+    }
+}
