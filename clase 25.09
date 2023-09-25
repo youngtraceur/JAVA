@@ -1,0 +1,82 @@
+
+import java.util.ArrayList;
+
+public class Principal {
+    public static void main(String[] args) {
+        ArrayList  <String> nombres;
+        nombres = new ArrayList<String>();
+        
+        nombres.add("Luffy");
+        nombres.add("Zoro");
+        nombres.add("Nami");
+        
+        System.out.println("Personajes de One Piece");
+        System.out.println("-    " + nombres.get (0));
+        System.out.println("-    " + nombres.get (1));
+        System.out.println("-    " + nombres.get (2));
+        
+        
+        System.out.println("Cantidad de elementos");
+        System.out.println("Cantidad: " + nombres.size());
+        
+        ArrayList<Integer> numeros = new ArrayList<Integer>();
+        
+        System.out.println("cantidad de numeros");
+        System.out.println(" "+ numeros.size());
+        
+        
+        numeros.add(10);
+       numeros.add(20);
+       numeros.add(30);
+       
+       System.out.println("Numeros papito");
+        System.out.println("-    " + numeros.get (0));
+        System.out.println("-    " + numeros.get (1));
+        System.out.println("-    " + numeros.get (2));
+        
+        
+        System.out.println("cantidad de numeros");
+        System.out.println(" "+ numeros.size());
+        
+        
+        nombres.add("Robin");
+        nombres.add("Usopp");
+        for(String nombre: nombres)
+        {
+            System.out.println("nombre: " + nombre);
+       
+        }
+        
+        int indice = nombres.indexOf("Nami");
+        
+        if(indice >= 0)
+            System.out.println("Existe");
+        else
+            System.out.println("NO existe");
+        
+        
+         boolean existe = nombres.contains("Nami");
+         
+         if(existe)
+             System.out.println("Esta Nami");
+         else
+             System.out.println("No esta nami");
+         
+         System.out.println("ELIMINAR ELEMENTOS");
+         boolean fueEliminado = nombres.remove("Zoro");
+         if(fueEliminado)
+             System.out.println("Zoro fue eliminado");
+         else
+             System.out.println("Zoro no fue eliminado");
+         
+         
+         String personaje = nombres.remove(1);
+         System.out.println("El Personaje eliminado es: " + personaje);
+         
+         
+         System.out.println("***CLEAR***");
+         System.out.println("Cantidad de elementos: "+ nombres.size());
+         nombres.clear();
+         System.out.println("Cantidad de elementos: "+ nombres.size());
+    }
+}
